@@ -41,7 +41,21 @@ const translations = {
 function handleUnsafe() {
   const input = document.getElementById('unsafeInput').value;
   const output = document.getElementById('unsafeOutput');
-  output.innerHTML = input; // XSS vulnerable - intentionally preserved
+  
+  // Check if input contains script tags and execute them
+  if (input.includes('<script>')) {
+    const scriptContent = input.match(/<script>(.*?)<\/script>/);
+    if (scriptContent && scriptContent[1]) {
+      try {
+        eval(scriptContent[1]); // This makes the XSS actually work
+        output.innerHTML = input + '<br><span style="color: var(--danger);">⚠️ Script executed!</span>';
+      } catch (error) {
+        output.innerHTML = input + '<br><span style="color: var(--danger);">Script error: ' + error.message + '</span>';
+      }
+    }
+  } else {
+    output.innerHTML = input; // For other HTML tags
+  }
 }
 
 function handleSafe() {
