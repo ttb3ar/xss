@@ -46,24 +46,8 @@ function handleUnsafe() {
   const output = document.getElementById('unsafeOutput');
   const currentLang = document.documentElement.getAttribute('data-language') || 'en';
   
-  // Check if input contains script tags and execute them
-  if (input.includes('<script>')) {
-    const scriptContent = input.match(/<script>(.*?)<\/script>/);
-    if (scriptContent && scriptContent[1]) {
-      try {
-        eval(scriptContent[1]); // This makes the XSS actually work
-        // Remove script tags before displaying to prevent double execution
-        const displayInput = input.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '[SCRIPT EXECUTED]');
-        const executedText = translations[currentLang].scriptExecuted;
-        output.innerHTML = displayInput + '<br><span style="color: var(--danger);">' + executedText + '</span>';
-      } catch (error) {
-        const errorText = translations[currentLang].scriptError;
-        output.innerHTML = input + '<br><span style="color: var(--danger);">' + errorText + error.message + '</span>';
-      }
-    }
-  } else {
-    output.innerHTML = input; // For other HTML tags
-  }
+  // Simply use innerHTML - this will execute any scripts naturally without eval
+  output.innerHTML = input;
 }
 
 function handleSafe() {
