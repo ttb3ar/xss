@@ -18,7 +18,7 @@ const translations = {
     safeSubmit: "Test Sanitized Input",
     infoTitle: "How it works:",
     infoText: "The unsafe section directly inserts your input as HTML (innerHTML), while the safe section treats it as plain text (textContent). Try entering: <script>alert('XSS')</script> or <img src=x onerror=alert('XSS')>",
-    footer: "Created for cybersecurity learning. Inspect the code to understand how XSS works.",
+    footer: "Created for cybersecurity learning. Inspect the code to better understand how XSS works.",
     footerCredit: "Created by TTB3AR"
   },
   jp: {
