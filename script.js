@@ -17,7 +17,7 @@ const translations = {
     safePlaceholder: "Try the same input here...",
     safeSubmit: "Test Sanitized Input",
     infoTitle: "How it works:",
-    infoText: "The unsafe section directly inserts your input as HTML (innerHTML), while the safe section treats it as plain text (textContent). Try entering: <script>alert('XSS')</script> or <img src=x onerror=alert('XSS')>",
+    infoText: infoText: "The unsafe section directly inserts your input as HTML (innerHTML), while the safe section treats it as plain text (textContent). Try entering: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code>, <code>&lt;img src=x onerror=alert('XSS')&gt;</code>, or <code>&lt;div onclick=\"alert('XSS')\"&gt;Click me&lt;/div&gt;</code>",
     footer: "Created for cybersecurity learning. Inspect the code to better understand how XSS works.",
     footerCredit: "Created by TTB3AR",
     scriptExecuted: "Script executed",
@@ -33,7 +33,7 @@ const translations = {
     safePlaceholder: "同じ入力をここで試してください...",
     safeSubmit: "サニタイズされた入力をテスト",
     infoTitle: "動作原理:",
-    infoText: "安全でないセクションは入力をHTMLとして直接挿入し（innerHTML）、安全セクションはプレーンテキストとして扱います（textContent）。以下を入力してみてください: <script>alert('XSS')</script> または <img src=x onerror=alert('XSS')>",
+    infoText: infoText: "安全でないセクションは入力をHTMLとして直接挿入し（innerHTML）、安全セクションはプレーンテキストとして扱います（textContent）。以下を入力してみてください: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code> または <code>&lt;img src=x onerror=alert('XSS')&gt;</code>",
     footer: "サイバーセキュリティ学習用に作成。XSSの仕組みを理解するためにコードを調べてください。",
     footerCredit: "TTB3AR制作",
     scriptExecuted: "スクリプトが実行されました",
@@ -177,7 +177,7 @@ function updateUILanguage(language) {
   document.getElementById('safeInput').placeholder = texts.safePlaceholder;
   document.getElementById('safe-submit').textContent = texts.safeSubmit;
   document.getElementById('info-title').textContent = texts.infoTitle;
-  document.getElementById('info-text').textContent = texts.infoText; 
+  document.getElementById('info-text').innerHTML = texts.infoText; 
   document.getElementById('footer-text').textContent = texts.footer;
   document.getElementById('footer-credit').textContent = texts.footerCredit;
   document.title = texts.title;
