@@ -19,7 +19,9 @@ const translations = {
     infoTitle: "How it works:",
     infoText: "The unsafe section directly inserts your input as HTML (innerHTML), while the safe section treats it as plain text (textContent). Try entering: <script>alert('XSS')</script> or <img src=x onerror=alert('XSS')>",
     footer: "Created for cybersecurity learning. Inspect the code to better understand how XSS works.",
-    footerCredit: "Created by TTB3AR"
+    footerCredit: "Created by TTB3AR",
+    scriptExecuted: "Script executed",
+    scriptError: "Script error: "
   },
   jp: {
     title: "XSS プレイグラウンド",
@@ -33,14 +35,16 @@ const translations = {
     infoTitle: "動作原理:",
     infoText: "安全でないセクションは入力をHTMLとして直接挿入し（innerHTML）、安全セクションはプレーンテキストとして扱います（textContent）。以下を入力してみてください: <script>alert('XSS')</script> または <img src=x onerror=alert('XSS')>",
     footer: "サイバーセキュリティ学習用に作成。XSSの仕組みを理解するためにコードを調べてください。",
-    footerCredit: "TTB3AR制作"
+    footerCredit: "TTB3AR制作",
+    scriptExecuted: "スクリプトが実行されました",
+    scriptError: "スクリプトエラー: "
   }
 };
 
-// Original XSS functionality - preserved exactly as is
-function handleUnsafe() {
+// Original XSS functionality - preserved exactly as isfunction handleUnsafe() {
   const input = document.getElementById('unsafeInput').value;
   const output = document.getElementById('unsafeOutput');
+  const currentLang = document.documentElement.getAttribute('data-language') || 'en';
   
   // Check if input contains script tags and execute them
   if (input.includes('<script>')) {
@@ -48,9 +52,13 @@ function handleUnsafe() {
     if (scriptContent && scriptContent[1]) {
       try {
         eval(scriptContent[1]); // This makes the XSS actually work
-        output.innerHTML = input + '<br><span style="color: var(--danger);">Script executed</span>';
+        // Remove script tags before displaying to prevent double execution
+        const displayInput = input.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '[SCRIPT EXECUTED]');
+        const executedText = translations[currentLang].scriptExecuted;
+        output.innerHTML = displayInput + '<br><span style="color: var(--danger);">' + executedText + '</span>';
       } catch (error) {
-        output.innerHTML = input + '<br><span style="color: var(--danger);">Script error: ' + error.message + '</span>';
+        const errorText = translations[currentLang].scriptError;
+        output.innerHTML = input + '<br><span style="color: var(--danger);">' + errorText + error.message + '</span>';
       }
     }
   } else {
