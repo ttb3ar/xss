@@ -18,7 +18,8 @@ const translations = {
     safeSubmit: "Test Sanitized Input",
     infoTitle: "How it works:",
     infoText: "The unsafe section directly inserts your input as HTML (innerHTML), while the safe section treats it as plain text (textContent). Try entering: <script>alert('XSS')</script> or <img src=x onerror=alert('XSS')>",
-    footer: "Created for cybersecurity learning. Inspect the code to understand how XSS works."
+    footer: "Created for cybersecurity learning. Inspect the code to understand how XSS works.",
+    footerCredit: "Created by TTB3AR"
   },
   jp: {
     title: "XSS プレイグラウンド",
@@ -31,7 +32,8 @@ const translations = {
     safeSubmit: "サニタイズされた入力をテスト",
     infoTitle: "動作原理:",
     infoText: "安全でないセクションは入力をHTMLとして直接挿入し（innerHTML）、安全セクションはプレーンテキストとして扱います（textContent）。次を入力してみてください: <script>alert('XSS')</script> または <img src=x onerror=alert('XSS')>",
-    footer: "サイバーセキュリティ学習用に作成。XSSの仕組みを理解するためにコードを調べてください。"
+    footer: "サイバーセキュリティ学習用に作成。XSSの仕組みを理解するためにコードを調べてください。",
+    footerCredit: "TTB3AR制作"
   }
 };
 
@@ -171,6 +173,7 @@ function updateUILanguage(language) {
   document.getElementById('info-title').textContent = texts.infoTitle;
   document.getElementById('info-text').innerHTML = texts.infoText; // Using innerHTML for code formatting
   document.getElementById('footer-text').textContent = texts.footer;
+  document.getElementById('footer-credit').textContent = texts.footerCredit;
   document.title = texts.title;
 }
 
@@ -223,12 +226,24 @@ function handleKeyboardNavigation(event) {
 
 // Enhanced input validation and feedback
 function validateInput(inputValue) {
+  const currentLang = document.documentElement.getAttribute('data-language') || 'en';
+  const messages = {
+    en: {
+      empty: 'Input cannot be empty',
+      tooLong: 'Input too long (max 1000 characters)'
+    },
+    jp: {
+      empty: '入力は空にできません',
+      tooLong: '入力が長すぎます（最大1000文字）'
+    }
+  };
+  
   if (!inputValue.trim()) {
-    return { valid: false, message: 'Input cannot be empty' };
+    return { valid: false, message: messages[currentLang].empty };
   }
   
   if (inputValue.length > 1000) {
-    return { valid: false, message: 'Input too long (max 1000 characters)' };
+    return { valid: false, message: messages[currentLang].tooLong };
   }
   
   return { valid: true, message: '' };
