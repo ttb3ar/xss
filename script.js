@@ -31,7 +31,7 @@ const translations = {
     safePlaceholder: "同じ入力をここで試してください...",
     safeSubmit: "サニタイズされた入力をテスト",
     infoTitle: "動作原理:",
-    infoText: "安全でないセクションは入力をHTMLとして直接挿入し（innerHTML）、安全セクションはプレーンテキストとして扱います（textContent）。次を入力してみてください: <script>alert('XSS')</script> または <img src=x onerror=alert('XSS')>",
+    infoText: "安全でないセクションは入力をHTMLとして直接挿入し（innerHTML）、安全セクションはプレーンテキストとして扱います（textContent）。以下を入力してみてください: <script>alert('XSS')</script> または <img src=x onerror=alert('XSS')>",
     footer: "サイバーセキュリティ学習用に作成。XSSの仕組みを理解するためにコードを調べてください。",
     footerCredit: "TTB3AR制作"
   }
