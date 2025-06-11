@@ -48,7 +48,7 @@ function handleUnsafe() {
     if (scriptContent && scriptContent[1]) {
       try {
         eval(scriptContent[1]); // This makes the XSS actually work
-        output.innerHTML = input + '<br><span style="color: var(--danger);">⚠️ Script executed!</span>';
+        output.innerHTML = input + '<br><span style="color: var(--danger);">Script executed</span>';
       } catch (error) {
         output.innerHTML = input + '<br><span style="color: var(--danger);">Script error: ' + error.message + '</span>';
       }
