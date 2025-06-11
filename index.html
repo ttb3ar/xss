@@ -62,7 +62,7 @@
 
       <div class="info-section">
         <h3 id="info-title">How it works:</h3>
-        <p id="info-text">The unsafe section directly inserts your input as HTML (innerHTML), while the safe section treats it as plain text (textContent). Try entering: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code> or <code>&lt;img src=x onerror=alert('XSS')&gt;</code></p>
+        <p id="info-text">The unsafe section directly inserts your input as HTML (innerHTML), while the safe section treats it as plain text (textContent). Try entering: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code>, <code>&lt;img src=x onerror=alert('XSS')&gt;</code>, or <code>&lt;div onclick="alert('XSS')"&gt;Click me&lt;/div&gt;</code></p>
       </div>
     </main>
   </div>
