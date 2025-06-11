@@ -41,7 +41,7 @@ const translations = {
   }
 };
 
-// Original XSS functionality - preserved exactly as isfunction handleUnsafe() {
+function handleUnsafe() {
   const input = document.getElementById('unsafeInput').value;
   const output = document.getElementById('unsafeOutput');
   const currentLang = document.documentElement.getAttribute('data-language') || 'en';
