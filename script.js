@@ -171,7 +171,7 @@ function updateUILanguage(language) {
   document.getElementById('safeInput').placeholder = texts.safePlaceholder;
   document.getElementById('safe-submit').textContent = texts.safeSubmit;
   document.getElementById('info-title').textContent = texts.infoTitle;
-  document.getElementById('info-text').innerHTML = texts.infoText; // Using innerHTML for code formatting
+  document.getElementById('info-text').textContent = texts.infoText; 
   document.getElementById('footer-text').textContent = texts.footer;
   document.getElementById('footer-credit').textContent = texts.footerCredit;
   document.title = texts.title;
