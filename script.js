@@ -44,10 +44,29 @@ const translations = {
 function handleUnsafe() {
   const input = document.getElementById('unsafeInput').value;
   const output = document.getElementById('unsafeOutput');
-  const currentLang = document.documentElement.getAttribute('data-language') || 'en';
   
-  // Simply use innerHTML - this will execute any scripts naturally without eval
-  output.innerHTML = input;
+  // Clear previous content
+  output.innerHTML = '';
+  
+  // Create a temporary container
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = input;
+  
+  // Extract and execute any script tags
+  const scripts = tempDiv.querySelectorAll('script');
+  scripts.forEach(script => {
+    const newScript = document.createElement('script');
+    if (script.src) {
+      newScript.src = script.src;
+    } else {
+      newScript.textContent = script.textContent;
+    }
+    document.body.appendChild(newScript);
+    document.body.removeChild(newScript); // Clean up
+  });
+  
+  // Insert the HTML content
+  output.appendChild(tempDiv);
 }
 
 function handleSafe() {
