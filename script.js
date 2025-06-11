@@ -272,6 +272,7 @@ function validateInput(inputValue) {
 }
 
 // Enhanced handleUnsafe with validation
+/*
 function handleUnsafeEnhanced() {
   const input = document.getElementById('unsafeInput').value;
   const output = document.getElementById('unsafeOutput');
@@ -285,7 +286,7 @@ function handleUnsafeEnhanced() {
   // Add timestamp for better tracking
   const timestamp = new Date().toLocaleTimeString();
   output.innerHTML = `<small style="color: var(--text-color); opacity: 0.7;">Executed at ${timestamp}:</small><br><br>` + input;
-}
+}*/
 
 // Error handling wrapper
 function withErrorHandling(fn, fallback) {
