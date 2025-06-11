@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XSS Playground - Educational Only</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>XSS Playground</h1>
+    <p class="warning">⚠️ This is for educational purposes only. Do NOT use these techniques maliciously.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Vulnerable Input (Unsafe)</h2>
+      <input type="text" id="unsafeInput" placeholder="Enter some HTML or script..." />
+      <button onclick="handleUnsafe()">Submit</button>
+      <div id="unsafeOutput" class="output"></div>
+    </section>
+
+    <section>
+      <h2>Sanitized Input (Safe)</h2>
+      <input type="text" id="safeInput" placeholder="Try the same input here..." />
+      <button onclick="handleSafe()">Submit</button>
+      <div id="safeOutput" class="output"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Created for cybersecurity learning. Inspect the code to understand how XSS works.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
