@@ -1,35 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" data-language="en">
 <head>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>XSS Playground - Educational Only</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>XSS Playground</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <h1>XSS Playground</h1>
-    <p class="warning">This is for educational purposes only. Do NOT use these techniques maliciously.</p>
-  </header>
+  <div class="home-button-wrapper">
+    <a href="https://ttb3ar.github.io/secTools/" class="home-button" aria-label="Go to Security Tools Homepage">
+      <i class="fas fa-home"></i>
+    </a>
+  </div>
+  <div class="language-switch-wrapper">
+    <label class="language-switch" for="language-checkbox">
+      <input type="checkbox" id="language-checkbox" />
+      <div class="slider lang-slider round">
+        <span class="lang-label">JP</span>
+        <span class="lang-label">EN</span>
+      </div>
+    </label>
+  </div>
+  <div class="theme-switch-wrapper">
+    <label class="theme-switch" for="checkbox">
+      <input type="checkbox" id="checkbox" />
+      <div class="slider theme-slider round">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+      </div>
+    </label>
+  </div>
 
-  <main>
-    <section>
-      <h2>Vulnerable Input (Unsafe)</h2>
-      <input type="text" id="unsafeInput" placeholder="Enter some HTML or script..." />
-      <button onclick="handleUnsafe()">Submit</button>
-      <div id="unsafeOutput" class="output"></div>
-    </section>
+  <div class="container">
+    <header>
+      <h1 id="title">XSS Playground</h1>
+      <p id="subtitle" class="warning">This is for educational purposes only. Do NOT use these techniques maliciously.</p>
+    </header>
+    
+    <main class="form-class">
+      <div class="input-group">
+        <label for="unsafeInput" id="unsafe-label">Vulnerable Input (Unsafe):</label>
+        <input type="text" id="unsafeInput" placeholder="Enter some HTML or script..." />
+        <div class="button-group">
+          <button onclick="handleUnsafe()" class="unsafe-button" id="unsafe-submit">Test XSS Vulnerability</button>
+        </div>
+        <div class="output" id="unsafeOutput"></div>
+      </div>
 
-    <section>
-      <h2>Sanitized Input (Safe)</h2>
-      <input type="text" id="safeInput" placeholder="Try the same input here..." />
-      <button onclick="handleSafe()">Submit</button>
-      <div id="safeOutput" class="output"></div>
-    </section>
-  </main>
+      <hr />
 
-  <footer>
-    <p>Created for cybersecurity learning. Inspect the code to understand how XSS works.</p>
+      <div class="input-group">
+        <label for="safeInput" id="safe-label">Sanitized Input (Safe):</label>
+        <input type="text" id="safeInput" placeholder="Try the same input here..." />
+        <div class="button-group">
+          <button onclick="handleSafe()" class="safe-button" id="safe-submit">Test Sanitized Input</button>
+        </div>
+        <div class="output" id="safeOutput"></div>
+      </div>
+
+      <div class="info-section">
+        <h3 id="info-title">How it works:</h3>
+        <p id="info-text">The unsafe section directly inserts your input as HTML (innerHTML), while the safe section treats it as plain text (textContent). Try entering: <code>&lt;script&gt;alert('XSS')&lt;/script&gt;</code> or <code>&lt;img src=x onerror=alert('XSS')&gt;</code></p>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="social-links">
+      <a href="https://github.com/ttb3ar" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/theodore-lin-7b391a299" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </div>
+    <p id="footer-text">Created for cybersecurity learning. Inspect the code to understand how XSS works.</p>
   </footer>
 
   <script src="script.js"></script>
