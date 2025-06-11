@@ -279,22 +279,6 @@ function handleUnsafeEnhanced() {
   output.innerHTML = `<small style="color: var(--text-color); opacity: 0.7;">Executed at ${timestamp}:</small><br><br>` + input;
 }
 
-// Enhanced handleSafe with validation
-function handleSafeEnhanced() {
-  const input = document.getElementById('safeInput').value;
-  const output = document.getElementById('safeOutput');
-  
-  const validation = validateInput(input);
-  if (!validation.valid) {
-    output.textContent = `Error: ${validation.message}`;
-    return;
-  }
-  
-  // Add timestamp for better tracking
-  const timestamp = new Date().toLocaleTimeString();
-  output.textContent = `Executed at ${timestamp}:\n\n${input}`;
-}
-
 // Error handling wrapper
 function withErrorHandling(fn, fallback) {
   return function(...args) {
